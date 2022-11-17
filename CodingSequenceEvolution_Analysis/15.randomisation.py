@@ -12,8 +12,8 @@ import numpy as np
 #Command line options==========================================================
 #==============================================================================
 parser = argparse.ArgumentParser()
-parser.add_argument("dSSdSfilter", type=str,
-                    help="An infile containing genes with dSSdSfilter values")
+parser.add_argument("dSfilter", type=str,
+                    help="An infile containing genes with dSfiltered values")
 parser.add_argument("out_dN_bootstrap", type=str,
                     help="Bootstrap values for dN estimates")
 parser.add_argument("out_dS_bootstrap", type=str,
@@ -54,7 +54,7 @@ def main():
     dS_list = []
 
     count = 0
-    with open(args.dSSdSfilter, 'r') as infile:
+    with open(args.dSfilter, 'r') as infile:
         for line in infile:
             if count >0:
                 length += 1

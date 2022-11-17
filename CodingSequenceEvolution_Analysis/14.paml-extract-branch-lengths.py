@@ -3,8 +3,7 @@
 
 ''' Extract branch lengths
 This script takes an infolder containing folders with the output of branch model test 
-and outputs branch lengths for the specified branch. Filters orthologs with branch-specific dS >= 2
-and if SdS for that branch is <= 1.'''
+and outputs branch lengths for the specified branch. Filters orthologs with branch-specific dS >= 2.'''
 #==============================================================================
 import argparse
 import sys
@@ -94,17 +93,15 @@ def main():
 			branch_length_dict[genename] = branch_lengths
 	print "Number of genes with branch lengths =", len(branch_length_dict)
 
-	#filter dS>2 and S*dS > 1
+	#filter dS>2
 	branch_length_dict_filtered = {}
 	for gene in branch_length_dict:
 		branch_lengths = branch_length_dict[gene]
 		dS = float(branch_lengths[5])
-		SdS = float(branch_lengths[-1])
 		if dS < 2:
-			if SdS > 1:
-				branch_length_dict_filtered[gene] = branch_length_dict[gene]
+			branch_length_dict_filtered[gene] = branch_length_dict[gene]
 
-	print "Number of genes with branch lengths after dS <2 and S*dS >1 filter =", len(branch_length_dict_filtered)
+	print "Number of genes with branch lengths after dS <2 filter =", len(branch_length_dict_filtered)
 
 	with open(args.outfile, "w") as outfile:
 		count = 0
